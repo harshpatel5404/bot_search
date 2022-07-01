@@ -8,7 +8,6 @@ class ApiServices {
   static Future getUserDetails() async {
     const baseUrl = "https://jsonplaceholder.typicode.com";
     homeController.userlist.clear();
-    homeController.isloading.value = true;
     try {
       final response = await http.get(Uri.parse('$baseUrl/users'), headers: {
         "Content-Type": "application/json",
@@ -22,10 +21,6 @@ class ApiServices {
         for (var i = 0; i < userinfo.length; i++) {
           homeController.userlist.add({"name": userinfo[i]["name"], "img": i});
         }
-
-        print(homeController.userlist);
-        homeController.isloading.value = false;
-        print(data);
       }
     } catch (e) {
       print(e.toString());
